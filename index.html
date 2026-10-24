@@ -1,0 +1,804 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KORU — Digital Couture & Avant-Garde Luxury</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            deep: '#07130E',
+                            green: '#0E2319',
+                            emerald: '#173929',
+                            gold: '#D4AF37',
+                            lightGold: '#F3E5AB',
+                            earth: '#A39171',
+                            obsidian: '#0A0C0B',
+                            sand: '#E6DFD3'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'radial-glow': 'radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+                        'green-gradient': 'linear-gradient(180deg, rgba(14, 35, 25, 0.8) 0%, rgba(7, 19, 14, 0.95) 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07130E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #173929;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+        /* Custom animations */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 6s infinite ease-in-out;
+        }
+        .glass-panel {
+            background: rgba(14, 35, 25, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-brand-deep text-brand-sand font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-deep">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Navigation Bar -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-500 py-5 px-6 lg:px-12 bg-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center p-1 group-hover:border-brand-gold transition-colors duration-300">
+                    <svg viewBox="0 0 100 100" class="w-full h-full fill-current text-brand-gold">
+                        <path d="M50 10 C30 10 15 25 15 45 C15 65 30 80 50 80 C60 80 70 75 75 65 C80 55 75 45 65 45 C55 45 50 52 50 60 C50 65 54 68 58 68 C52 72 45 70 42 63 C38 54 44 42 55 38 C68 33 80 43 80 58 C80 75 65 90 45 90 C20 90 5 70 5 45 C5 18 25 2 50 2 Z"/>
+                    </svg>
+                </div>
+                <span class="font-cinzel text-2xl font-bold tracking-[0.25em] text-white group-hover:text-brand-gold transition-colors duration-300">KORU</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs uppercase tracking-[0.2em] font-medium text-brand-sand/80">
+                <a href="#lookbook" class="hover:text-brand-gold transition-colors duration-300">Lookbook 360°</a>
+                <a href="#philosophy" class="hover:text-brand-gold transition-colors duration-300">Brand Story</a>
+                <a href="#atelier" class="hover:text-brand-gold transition-colors duration-300">Atelier</a>
+                <a href="#campaign" class="hover:text-brand-gold transition-colors duration-300">Press & Virality</a>
+                <a href="#vip" class="hover:text-brand-gold transition-colors duration-300">VIP Access</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="#lookbook" class="relative group overflow-hidden rounded-full p-[1px] focus:outline-none">
+                    <span class="absolute inset-0 bg-gradient-to-r from-brand-gold via-brand-lightGold to-brand-gold rounded-full opacity-70 group-hover:opacity-100 transition-opacity"></span>
+                    <span class="relative px-6 py-2.5 rounded-full bg-brand-deep text-brand-gold group-hover:text-white transition-colors duration-300 text-xs font-semibold uppercase tracking-widest flex items-center gap-2">
+                        <span>Explore Collection</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-brand-gold p-2 focus:outline-none" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 top-[70px] bg-brand-deep/95 backdrop-blur-xl z-50 flex flex-col p-8 space-y-6 text-center border-t border-brand-gold/20">
+            <a href="#lookbook" class="mobile-nav-link text-lg font-cinzel tracking-wider text-brand-sand hover:text-brand-gold">360° Lookbook</a>
+            <a href="#philosophy" class="mobile-nav-link text-lg font-cinzel tracking-wider text-brand-sand hover:text-brand-gold">Brand Story</a>
+            <a href="#atelier" class="mobile-nav-link text-lg font-cinzel tracking-wider text-brand-sand hover:text-brand-gold">Virtual Atelier</a>
+            <a href="#campaign" class="mobile-nav-link text-lg font-cinzel tracking-wider text-brand-sand hover:text-brand-gold">Campaigns</a>
+            <a href="#vip" class="mobile-nav-link text-lg font-cinzel tracking-wider text-brand-sand hover:text-brand-gold">VIP Access</a>
+            <a href="#lookbook" class="mobile-nav-link inline-block mt-4 px-8 py-3 bg-brand-gold text-brand-deep font-bold uppercase tracking-widest rounded-full text-sm">
+                Explore Collection
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 lg:px-12 overflow-hidden">
+        <!-- Background Lighting Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-emerald/30 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Left Column: Typography & CTAs -->
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full glass-panel border-brand-gold/30 text-brand-gold text-xs uppercase tracking-[0.3em]">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+                    <span>Digital Avant-Garde Couture 2026</span>
+                </div>
+
+                <h1 class="font-cinzel text-4xl sm:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+                    NATURE MEETS <br/>
+                    <span class="bg-gradient-to-r from-brand-gold via-brand-lightGold to-brand-earth bg-clip-text text-transparent">HIGH COUTURE</span>
+                </h1>
+
+                <p class="text-brand-sand/80 text-base sm:text-lg max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+                    A revolutionary fusion of Afrofuturism, organic fabric architecture, and high-fashion digital craftsmanship. Engineered for the runway of tomorrow.
+                </p>
+
+                <!-- Dual Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#lookbook" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-gold to-brand-earth text-brand-deep font-semibold uppercase tracking-[0.2em] text-xs rounded-full hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300 text-center">
+                        View 360° Collection
+                    </a>
+                    <a href="#vip" class="w-full sm:w-auto px-8 py-4 glass-panel border-brand-gold/30 text-brand-sand hover:text-brand-gold font-semibold uppercase tracking-[0.2em] text-xs rounded-full hover:border-brand-gold transition-all duration-300 text-center flex items-center justify-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold"></i>
+                        <span>Join The Runway VIP</span>
+                    </a>
+                </div>
+
+                <!-- Stats Quick Banner -->
+                <div class="pt-10 grid grid-cols-3 gap-6 border-t border-brand-gold/15 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+                    <div>
+                        <div class="font-cinzel text-2xl sm:text-3xl font-bold text-white">360°</div>
+                        <div class="text-[11px] uppercase tracking-widest text-brand-sand/60 mt-1">Virtual fitting</div>
+                    </div>
+                    <div>
+                        <div class="font-cinzel text-2xl sm:text-3xl font-bold text-brand-gold">100%</div>
+                        <div class="text-[11px] uppercase tracking-widest text-brand-sand/60 mt-1">Zero-Waste Digital</div>
+                    </div>
+                    <div>
+                        <div class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Haute</div>
+                        <div class="text-[11px] uppercase tracking-widest text-brand-sand/60 mt-1">Bespoke Design</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Hero Visual Frame -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden glass-panel p-3 border-brand-gold/30 group shadow-2xl">
+                    <div class="relative w-full h-full rounded-xl overflow-hidden bg-brand-green">
+                        <img id="hero-img" src="watermarked_img_11232802557751988879.jpg" alt="KORU High Couture Model Front View" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-deep via-transparent to-transparent opacity-80"></div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xl border border-brand-gold/30 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-cinzel text-brand-gold uppercase tracking-wider">Signature Look</p>
+                                <p class="text-sm font-bold text-white">The Emerald Spiral Suit</p>
+                            </div>
+                            <a href="#lookbook" class="p-2 rounded-full bg-brand-gold text-brand-deep hover:scale-110 transition-transform">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive 360° Lookbook Showcase -->
+    <section id="lookbook" class="py-24 px-6 lg:px-12 bg-gradient-to-b from-brand-deep via-brand-green/30 to-brand-deep relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold">Interactive Showroom</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white">360° CRAFTSMANSHIP</h2>
+                <p class="text-brand-sand/70 text-sm sm:text-base font-light">
+                    Examine every stitch, sculpted fold, and organic weave of our flagship ensemble across three distinct perspectives.
+                </p>
+            </div>
+
+            <!-- Interactive Angle Switcher Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Angle Controls & Spec Cards (Left Column) -->
+                <div class="lg:col-span-4 space-y-6 order-2 lg:order-1">
+                    <div class="space-y-2">
+                        <h3 class="font-cinzel text-xs uppercase tracking-[0.2em] text-brand-gold">Select Perspective</h3>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="switchAngle('front')" id="btn-front" class="angle-btn active px-4 py-3 rounded-xl glass-panel border-brand-gold text-brand-gold font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex flex-col items-center gap-1.5 hover:bg-brand-gold/10">
+                                <i data-lucide="user" class="w-4 h-4"></i>
+                                <span>Front</span>
+                            </button>
+                            <button onclick="switchAngle('back')" id="btn-back" class="angle-btn px-4 py-3 rounded-xl glass-panel border-brand-gold/20 text-brand-sand/70 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex flex-col items-center gap-1.5 hover:border-brand-gold hover:text-brand-gold">
+                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                <span>Back</span>
+                            </button>
+                            <button onclick="switchAngle('side')" id="btn-side" class="angle-btn px-4 py-3 rounded-xl glass-panel border-brand-gold/20 text-brand-sand/70 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex flex-col items-center gap-1.5 hover:border-brand-gold hover:text-brand-gold">
+                                <i data-lucide="move-horizontal" class="w-4 h-4"></i>
+                                <span>Side</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Details Card -->
+                    <div id="spec-card" class="glass-panel p-6 rounded-2xl border-brand-gold/30 space-y-4">
+                        <div class="flex items-center justify-between border-b border-brand-gold/20 pb-3">
+                            <span id="spec-angle-title" class="font-cinzel text-lg font-bold text-white">Front View Architecture</span>
+                            <span class="text-xs px-2.5 py-1 bg-brand-gold/20 text-brand-gold rounded-full uppercase tracking-wider">Look #001</span>
+                        </div>
+                        <p id="spec-description" class="text-brand-sand/80 text-xs sm:text-sm leading-relaxed">
+                            Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green. Composed of organic fern motifs and a circular structured KORU shield skirt element.
+                        </p>
+                        
+                        <!-- Feature List -->
+                        <div class="space-y-2 pt-2">
+                            <div class="flex items-center gap-3 text-xs text-brand-sand">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold shrink-0"></i>
+                                <span id="feat-1">Spiral fern lapel structure with gold thread accents</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-xs text-brand-sand">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold shrink-0"></i>
+                                <span id="feat-2">Asymmetrical layered earth-fabric train</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-xs text-brand-sand">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-gold shrink-0"></i>
+                                <span id="feat-3">Textured custom KORU medallion plaque</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA to open detailed modal -->
+                        <button onclick="openLookModal('Look #001: The Emerald Spiral Suit', 'front')" class="w-full mt-4 py-3 glass-panel border border-brand-gold/40 text-brand-gold hover:bg-brand-gold hover:text-brand-deep transition-all duration-300 rounded-xl text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2">
+                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                            <span>Inspect Full Technical Details</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Interactive Image Showcase Frame (Right/Center Column) -->
+                <div class="lg:col-span-8 order-1 lg:order-2">
+                    <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] rounded-2xl overflow-hidden glass-panel border-brand-gold/40 p-2 shadow-2xl group">
+                        
+                        <!-- Main Display Image -->
+                        <div class="relative w-full h-full rounded-xl overflow-hidden bg-brand-obsidian">
+                            <img id="main-view-img" src="watermarked_img_11232802557751988879.jpg" alt="KORU Front View" class="w-full h-full object-cover object-top transition-all duration-700 transform group-hover:scale-102">
+                            
+                            <!-- Overlay Watermark Branding -->
+                            <div class="absolute top-6 right-6 pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity">
+                                <span class="font-cinzel text-2xl font-bold tracking-[0.3em] text-brand-gold">KORU</span>
+                            </div>
+
+                            <!-- Hotspots / Interactive Pointers -->
+                            <div id="hotspot-1" class="absolute top-[32%] left-[48%] -translate-x-1/2 -translate-y-1/2 group/spot cursor-pointer">
+                                <span class="relative flex h-5 w-5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-5 w-5 bg-brand-gold/80 border border-white items-center justify-center text-[9px] font-bold text-brand-deep">1</span>
+                                </span>
+                                <!-- Hotspot Tooltip -->
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover/spot:block w-48 p-3 rounded-lg glass-panel border border-brand-gold text-[11px] text-white z-30 shadow-xl">
+                                    <p class="font-semibold text-brand-gold">Botanical Crest</p>
+                                    <p class="text-brand-sand/80">3D sculptured fern pattern with embedded gold threading.</p>
+                                </div>
+                            </div>
+
+                            <div id="hotspot-2" class="absolute top-[60%] left-[55%] -translate-x-1/2 -translate-y-1/2 group/spot cursor-pointer">
+                                <span class="relative flex h-5 w-5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-5 w-5 bg-brand-gold/80 border border-white items-center justify-center text-[9px] font-bold text-brand-deep">2</span>
+                                </span>
+                                <!-- Hotspot Tooltip -->
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover/spot:block w-48 p-3 rounded-lg glass-panel border border-brand-gold text-[11px] text-white z-30 shadow-xl">
+                                    <p class="font-semibold text-brand-gold">Embossed Medallion</p>
+                                    <p class="text-brand-sand/80">Signature circular emblem crafted from reinforced eco-felt.</p>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Quick Swiper Bar -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 glass-panel px-6 py-2 rounded-full border border-brand-gold/30 flex items-center gap-6">
+                                <button onclick="prevAngle()" class="text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-1 text-xs">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Prev
+                                </button>
+                                <span id="angle-indicator" class="text-xs uppercase tracking-widest text-brand-gold font-cinzel font-semibold">1 / 3 — Front View</span>
+                                <button onclick="nextAngle()" class="text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-1 text-xs">
+                                    Next <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Philosophy / Runway Story -->
+    <section id="philosophy" class="py-24 px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Narrative Column -->
+            <div class="lg:col-span-7 space-y-8">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold">The Manifesto</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
+                    REDEFINING LUXURY <br/>
+                    THROUGH THE DIGITAL SPIRAL
+                </h2>
+                
+                <div class="space-y-4 text-brand-sand/80 text-sm sm:text-base leading-relaxed font-light">
+                    <p>
+                        Rooted in the Maori symbol of new life, growth, and harmony, <strong class="text-brand-gold font-semibold">KORU</strong> blends organic natural forms with high-end digital couture. We believe the future of fashion lies at the intersection of raw African heritage and boundless digital architecture.
+                    </p>
+                    <p>
+                        Every piece in our collection is digitally sculpted prior to creation—eliminating material waste while allowing complex, impossible geometric silhouettes to materialize seamlessly onto the runway.
+                    </p>
+                </div>
+
+                <!-- Philosophy Pillars -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div class="glass-panel p-5 rounded-xl border-brand-gold/20 space-y-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                            <i data-lucide="leaf" class="w-4 h-4"></i>
+                        </div>
+                        <h4 class="font-cinzel text-base font-bold text-white">Organic Fabric Architecture</h4>
+                        <p class="text-xs text-brand-sand/70">Bio-based layered textures mirroring natural flora and earth tones.</p>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-xl border-brand-gold/20 space-y-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                            <i data-lucide="cpu" class="w-4 h-4"></i>
+                        </div>
+                        <h4 class="font-cinzel text-base font-bold text-white">Afrofuturistic Digital Twin</h4>
+                        <p class="text-xs text-brand-sand/70">Every garment comes with a 3D digital twin for virtual worlds & AR fittings.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Showcase Column -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md aspect-square rounded-2xl overflow-hidden glass-panel border-brand-gold/30 p-3">
+                    <img src="watermarked_img_16056633208915482578.jpg" alt="KORU Back View Detail" class="w-full h-full object-cover rounded-xl">
+                    
+                    <!-- Quote Box Overlay -->
+                    <div class="absolute bottom-6 left-6 right-6 p-5 glass-panel rounded-xl border border-brand-gold/40 text-center">
+                        <p class="font-cinzel text-xs italic text-brand-lightGold">"KORU represents a monumental shift in how high fashion harmonizes with modern technology."</p>
+                        <p class="text-[10px] uppercase tracking-widest text-brand-sand/60 mt-2">— VOGUE DIGITAL</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Virtual Atelier / Lookbook Gallery Grid -->
+    <section id="atelier" class="py-24 px-6 lg:px-12 bg-brand-deep relative border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold">Virtual Atelier</span>
+                    <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white">CAPSULE COLLECTIONS</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="px-5 py-2 rounded-full glass-panel border-brand-gold text-brand-gold text-xs uppercase tracking-wider">All Looks</button>
+                    <button class="px-5 py-2 rounded-full glass-panel border-brand-gold/20 text-brand-sand/60 hover:text-brand-gold text-xs uppercase tracking-wider">Couture</button>
+                    <button class="px-5 py-2 rounded-full glass-panel border-brand-gold/20 text-brand-sand/60 hover:text-brand-gold text-xs uppercase tracking-wider">Digital Only</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border-brand-gold/20 group hover:border-brand-gold/60 transition-all duration-500">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-brand-obsidian">
+                        <img src="watermarked_img_11232802557751988879.jpg" alt="Look 01" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 glass-panel rounded-full text-[10px] font-cinzel text-brand-gold uppercase tracking-widest">Front View</div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-cinzel text-xl font-bold text-white group-hover:text-brand-gold transition-colors">The Emerald Spiral</h3>
+                        <p class="text-xs text-brand-sand/70">Structured blazer with sculpted asymmetrical layered skirt and botanical emblem.</p>
+                        <button onclick="openLookModal('The Emerald Spiral - Front', 'front')" class="w-full py-2.5 rounded-xl border border-brand-gold/30 text-brand-gold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-brand-deep transition-all">
+                            View Spec
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border-brand-gold/20 group hover:border-brand-gold/60 transition-all duration-500">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-brand-obsidian">
+                        <img src="watermarked_img_16056633208915482578.jpg" alt="Look 02" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 glass-panel rounded-full text-[10px] font-cinzel text-brand-gold uppercase tracking-widest">Back Perspective</div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-cinzel text-xl font-bold text-white group-hover:text-brand-gold transition-colors">Symmetrical Fern Spine</h3>
+                        <p class="text-xs text-brand-sand/70">Continuous spine embroidery flowing into tiered earth fabric trailing skirt.</p>
+                        <button onclick="openLookModal('The Emerald Spiral - Back', 'back')" class="w-full py-2.5 rounded-xl border border-brand-gold/30 text-brand-gold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-brand-deep transition-all">
+                            View Spec
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden border-brand-gold/20 group hover:border-brand-gold/60 transition-all duration-500">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-brand-obsidian">
+                        <img src="watermarked_img_6442430547365428504.jpg" alt="Look 03" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 px-3 py-1 glass-panel rounded-full text-[10px] font-cinzel text-brand-gold uppercase tracking-widest">Side Profile</div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-cinzel text-xl font-bold text-white group-hover:text-brand-gold transition-colors">The Profile Silhouette</h3>
+                        <p class="text-xs text-brand-sand/70">Sculpted boots matching the jacket's organic texture, engineered for motion.</p>
+                        <button onclick="openLookModal('The Emerald Spiral - Side', 'side')" class="w-full py-2.5 rounded-xl border border-brand-gold/30 text-brand-gold text-xs uppercase tracking-wider hover:bg-brand-gold hover:text-brand-deep transition-all">
+                            View Spec
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Press, Social Virality & Campaign Highlights -->
+    <section id="campaign" class="py-24 px-6 lg:px-12 bg-gradient-to-b from-brand-deep via-brand-green/20 to-brand-deep relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold">Viral Momentum</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white">PRESS & CAMPAIGN HIGHLIGHTS</h2>
+            </div>
+
+            <!-- Press Quotes Banner -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border-brand-gold/20 text-center space-y-3">
+                    <div class="text-brand-gold font-cinzel font-bold text-lg">VOGUE AFRICA</div>
+                    <p class="text-xs text-brand-sand/80 italic">"A breathtaking fusion of traditional African motifs and futuristic 3D fashion sculpting."</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-brand-gold/20 text-center space-y-3">
+                    <div class="text-brand-gold font-cinzel font-bold text-lg">HIGHSNOBIETY</div>
+                    <p class="text-xs text-brand-sand/80 italic">"KORU is rewriting the rules of the street runway with zero-waste digital haute couture."</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border-brand-gold/20 text-center space-y-3">
+                    <div class="text-brand-gold font-cinzel font-bold text-lg">ELLE DIGITAL</div>
+                    <p class="text-xs text-brand-sand/80 italic">"The most viral street-runway debut of the season. Pure visual artistry."</p>
+                </div>
+            </div>
+
+            <!-- Mock Reel / Social Performance Showcase -->
+            <div class="glass-panel p-8 rounded-3xl border-brand-gold/30 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 relative aspect-[9/16] max-w-xs mx-auto w-full rounded-2xl overflow-hidden border border-brand-gold/40 shadow-2xl">
+                    <img src="watermarked_img_11232802557751988879.jpg" alt="Instagram Reel Preview" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-deep/90 via-transparent to-transparent flex flex-col justify-end p-4">
+                        <div class="flex items-center gap-2 text-white text-xs font-semibold">
+                            <i data-lucide="instagram" class="w-4 h-4 text-brand-gold"></i>
+                            <span>@koru.designer</span>
+                        </div>
+                        <p class="text-[10px] text-brand-sand/80 mt-1 line-clamp-2">When organic nature meets high fashion. Bringing the @koru.designer vision to life. 🌿</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-semibold uppercase tracking-wider">
+                        <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                        <span>Trending Reel Stats</span>
+                    </div>
+                    <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">4.8M+ Organic Impressions</h3>
+                    <p class="text-xs sm:text-sm text-brand-sand/70 leading-relaxed">
+                        Cross-platform engagement spanning Paris, Lagos, London, and New York. Captivating global fashion curators and digital art collectors alike.
+                    </p>
+
+                    <!-- Interactive Social Engagement Buttons -->
+                    <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
+                        <button onclick="shareBrand()" class="px-5 py-2.5 rounded-full glass-panel border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-deep transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-2">
+                            <i data-lucide="share-2" class="w-4 h-4"></i>
+                            <span>Share Post</span>
+                        </button>
+                        <a href="https://instagram.com" target="_blank" class="px-5 py-2.5 rounded-full bg-brand-gold text-brand-deep hover:bg-brand-lightGold transition-all text-xs uppercase tracking-wider font-semibold flex items-center gap-2">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                            <span>View on Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VIP Access / Newsletter Signup -->
+    <section id="vip" class="py-24 px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto glass-panel rounded-3xl p-8 sm:p-14 border-brand-gold/40 text-center space-y-8 relative z-10">
+            <div class="w-12 h-12 rounded-full bg-brand-gold/20 border border-brand-gold flex items-center justify-center mx-auto text-brand-gold">
+                <i data-lucide="crown" class="w-6 h-6"></i>
+            </div>
+
+            <div class="space-y-3">
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-white">JOIN THE RUNWAY VIP</h2>
+                <p class="text-brand-sand/80 text-xs sm:text-sm max-w-xl mx-auto font-light leading-relaxed">
+                    Receive private invitations to virtual fashion week showcases, early access to 1-of-1 digital couture drops, and AR fitting passes.
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form id="vip-form" onsubmit="handleVipSubmit(event)" class="max-w-md mx-auto space-y-4">
+                <div class="relative">
+                    <input type="email" required placeholder="Enter your official email..." class="w-full px-6 py-4 rounded-full bg-brand-deep/80 border border-brand-gold/30 text-brand-sand text-xs placeholder:text-brand-sand/40 focus:outline-none focus:border-brand-gold transition-colors pr-36">
+                    <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 px-6 rounded-full bg-brand-gold text-brand-deep hover:bg-brand-lightGold text-xs uppercase font-bold tracking-wider transition-all flex items-center gap-1">
+                        <span>Subscribe</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+                <p class="text-[10px] text-brand-sand/50">By subscribing, you agree to receive digital couture collection alerts. Zero spam.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 lg:px-12 bg-brand-obsidian border-t border-brand-gold/20 text-xs text-brand-sand/60">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            
+            <div class="space-y-4">
+                <a href="#" class="font-cinzel text-2xl font-bold tracking-[0.2em] text-white">KORU</a>
+                <p class="text-xs text-brand-sand/60 leading-relaxed">
+                    Digital Couture & Luxury Avant-Garde. Bridging organic nature and futuristic craftsmanship.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-cinzel text-sm text-brand-gold mb-3 uppercase tracking-wider">Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#lookbook" class="hover:text-brand-gold transition-colors">360° Lookbook</a></li>
+                    <li><a href="#philosophy" class="hover:text-brand-gold transition-colors">Brand Story</a></li>
+                    <li><a href="#atelier" class="hover:text-brand-gold transition-colors">Virtual Atelier</a></li>
+                    <li><a href="#campaign" class="hover:text-brand-gold transition-colors">Press Releases</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-cinzel text-sm text-brand-gold mb-3 uppercase tracking-wider">Legal & Sustainability</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" onclick="showNotice('Digital NFT Provenance & Authentication Guaranteed.')" class="hover:text-brand-gold transition-colors">Provenance & Authenticity</a></li>
+                    <li><a href="#" onclick="showNotice('Zero Material Waste Policy Verified.')" class="hover:text-brand-gold transition-colors">Zero-Waste Charter</a></li>
+                    <li><a href="#" onclick="showNotice('Privacy Policy & Data Security Compliance.')" class="hover:text-brand-gold transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-cinzel text-sm text-brand-gold mb-3 uppercase tracking-wider">Connect</h4>
+                <div class="flex items-center gap-4 text-brand-sand">
+                    <a href="https://instagram.com" target="_blank" class="p-2 rounded-full glass-panel hover:text-brand-gold transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="p-2 rounded-full glass-panel hover:text-brand-gold transition-colors"><i data-lucide="video" class="w-4 h-4"></i></a>
+                    <a href="https://pinterest.com" target="_blank" class="p-2 rounded-full glass-panel hover:text-brand-gold transition-colors"><i data-lucide="pin" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-brand-gold/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-brand-sand/40">
+            <p>© 2026 KORU Haute Couture. All Rights Reserved.</p>
+            <p>Designed for Paris • Lagos • London • New York</p>
+        </div>
+    </footer>
+
+    <!-- Lookbook Specification Modal -->
+    <div id="look-modal" class="fixed inset-0 z-50 hidden bg-brand-deep/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6">
+        <div class="glass-panel border-brand-gold/40 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLookModal()" class="absolute top-6 right-6 text-brand-sand/60 hover:text-brand-gold">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="space-y-2">
+                <span class="text-xs uppercase tracking-widest text-brand-gold font-cinzel">Technical Specification Sheet</span>
+                <h3 id="modal-title" class="font-cinzel text-2xl font-bold text-white">The Emerald Spiral Suit</h3>
+            </div>
+
+            <div class="aspect-[16/9] rounded-xl overflow-hidden bg-brand-obsidian">
+                <img id="modal-img" src="watermarked_img_11232802557751988879.jpg" alt="Look Detail" class="w-full h-full object-cover">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 text-xs">
+                <div class="p-3 glass-panel rounded-xl">
+                    <span class="text-brand-gold uppercase tracking-wider block font-semibold mb-1">Fabric & Texture</span>
+                    <span id="modal-fabric" class="text-brand-sand/80">Organic bio-wool blend, eco-felt, metallic gold thread</span>
+                </div>
+                <div class="p-3 glass-panel rounded-xl">
+                    <span class="text-brand-gold uppercase tracking-wider block font-semibold mb-1">Digital Rendering</span>
+                    <span class="text-brand-sand/80">3D Photorealistic Mesh / AR Ready</span>
+                </div>
+            </div>
+
+            <button onclick="closeLookModal(); showNotice('Fitting request registered. A couture advisor will contact you.')" class="w-full py-3 bg-brand-gold text-brand-deep font-bold uppercase tracking-wider text-xs rounded-xl hover:bg-brand-lightGold transition-colors">
+                Request Virtual Fitting Appointment
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 360 Degree View State Management
+        const angles = {
+            front: {
+                img: 'watermarked_img_11232802557751988879.jpg',
+                title: 'Front View Architecture',
+                desc: 'Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green. Composed of organic fern motifs and a circular structured KORU shield skirt element.',
+                f1: 'Spiral fern lapel structure with gold thread accents',
+                f2: 'Asymmetrical layered earth-fabric train',
+                f3: 'Textured custom KORU medallion plaque',
+                indicator: '1 / 3 — Front View',
+                hs1: { top: '32%', left: '48%' },
+                hs2: { top: '60%', left: '55%' }
+            },
+            back: {
+                img: 'watermarked_img_16056633208915482578.jpg',
+                title: 'Back View Sculpture',
+                desc: 'Continuous spinal fern embroidery aligning along the shoulder blades. Features dramatic layered earth-tone peplum cut and centered embossed rear emblem.',
+                f1: 'Symmetrical botanical spine stitching',
+                f2: 'Cascading raw-edge earth fabric frills',
+                f3: 'Reinforced back canvas framework',
+                indicator: '2 / 3 — Back View',
+                hs1: { top: '35%', left: '50%' },
+                hs2: { top: '68%', left: '50%' }
+            },
+            side: {
+                img: 'watermarked_img_6442430547365428504.jpg',
+                title: 'Side Profile & Stance',
+                desc: 'Dynamic side silhouette highlighting the volume and depth of layered skirts. Complemented by custom texture-matched high-heeled boots.',
+                f1: 'Volumetric tiered skirt extension',
+                f2: 'Curved high-collar profile',
+                f3: 'Matching embroidered footwear design',
+                indicator: '3 / 3 — Side Profile',
+                hs1: { top: '30%', left: '51%' },
+                hs2: { top: '85%', left: '52%' }
+            }
+        };
+
+        let currentAngleKey = 'front';
+        const angleKeys = ['front', 'back', 'side'];
+
+        function switchAngle(key) {
+            currentAngleKey = key;
+            const data = angles[key];
+
+            // Update main image
+            const mainImg = document.getElementById('main-view-img');
+            mainImg.src = data.img;
+
+            // Update text specs
+            document.getElementById('spec-angle-title').innerText = data.title;
+            document.getElementById('spec-description').innerText = data.desc;
+            document.getElementById('feat-1').innerText = data.f1;
+            document.getElementById('feat-2').innerText = data.f2;
+            document.getElementById('feat-3').innerText = data.f3;
+            document.getElementById('angle-indicator').innerText = data.indicator;
+
+            // Update Hotspot positions
+            const hs1 = document.getElementById('hotspot-1');
+            const hs2 = document.getElementById('hotspot-2');
+            hs1.style.top = data.hs1.top;
+            hs1.style.left = data.hs1.left;
+            hs2.style.top = data.hs2.top;
+            hs2.style.left = data.hs2.left;
+
+            // Active button states
+            document.querySelectorAll('.angle-btn').forEach(btn => {
+                btn.classList.remove('border-brand-gold', 'text-brand-gold', 'bg-brand-gold/10');
+                btn.classList.add('border-brand-gold/20', 'text-brand-sand/70');
+            });
+            const activeBtn = document.getElementById(`btn-${key}`);
+            activeBtn.classList.remove('border-brand-gold/20', 'text-brand-sand/70');
+            activeBtn.classList.add('border-brand-gold', 'text-brand-gold', 'bg-brand-gold/10');
+        }
+
+        function nextAngle() {
+            const idx = angleKeys.indexOf(currentAngleKey);
+            const nextIdx = (idx + 1) % angleKeys.length;
+            switchAngle(angleKeys[nextIdx]);
+        }
+
+        function prevAngle() {
+            const idx = angleKeys.indexOf(currentAngleKey);
+            const prevIdx = (idx - 1 + angleKeys.length) % angleKeys.length;
+            switchAngle(angleKeys[prevIdx]);
+        }
+
+        // Modal Controls
+        function openLookModal(title, angleKey) {
+            const modal = document.getElementById('look-modal');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-img').src = angles[angleKey || 'front'].img;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLookModal() {
+            document.getElementById('look-modal').classList.add('hidden');
+        }
+
+        // VIP Newsletter Form Handler
+        function handleVipSubmit(e) {
+            e.preventDefault();
+            showNotice("Welcome to KORU VIP. Your invitation to the private digital showcase has been dispatched.");
+            e.target.reset();
+        }
+
+        // Toast Notification Function
+        function showNotice(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel border-brand-gold p-4 rounded-xl text-xs text-white shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-4 pointer-events-auto';
+            toast.innerHTML = `
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-gold shrink-0"></i>
+                <span>${msg}</span>
+            `;
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Share functionality
+        function shareBrand() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'KORU — Digital Couture & Luxury Avant-Garde',
+                    text: 'Explore the 360° digital runway collection by KORU.',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                showNotice("Link copied to clipboard!");
+            }
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.remove('bg-transparent');
+                header.classList.add('bg-brand-deep/90', 'backdrop-blur-lg', 'border-b', 'border-brand-gold/10', 'py-3');
+            } else {
+                header.classList.add('bg-transparent');
+                header.classList.remove('bg-brand-deep/90', 'backdrop-blur-lg', 'border-b', 'border-brand-gold/10', 'py-3');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
+```
