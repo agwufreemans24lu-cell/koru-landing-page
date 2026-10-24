@@ -363,13 +363,43 @@
         </div>
         <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Receive private invitations to virtual fashion week showcases, early access to 1-of-1 digital couture drops, and AR fitting passes.</p>
         
-        <form class="vip-form" action="https://formspree.io/f/xyeezrbo" method="POST">
-    <input type="email" name="email" placeholder="Enter your email address..." required>
-    <button type="submit" class="btn-gold">Join VIP</button>
-</form>
+            <section class="vip-section" id="vip">
+        <div class="section-title">
+            <span>Exclusive Invitations</span>
+            <h2>JOIN THE RUNWAY VIP</h2>
+        </div>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 30px auto;">
+            Receive private invitations to virtual fashion showcases, early access to digital couture drops, and bespoke fittings.
+        </p>
+        
+        <form class="vip-form" action="https://formspree.io/f/xyeezrbo" method="POST" style="flex-direction: column; align-items: center; max-width: 550px;">
+            
+            <!-- Full Name -->
+            <input type="text" name="name" placeholder="Your Full Name" required style="width: 100%; margin-bottom: 12px;">
+            
+            <!-- Email Address -->
+            <input type="email" name="email" placeholder="Your Email Address" required style="width: 100%; margin-bottom: 12px;">
+            
+            <!-- What They Want / Interest -->
+            <select name="interest" required style="width: 100%; margin-bottom: 12px; padding: 14px 18px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border-color); color: #fff; border-radius: 2px; outline: none; font-size: 0.95rem;">
+                <option value="" disabled selected>What are you interested in?</option>
+                <option value="Bespoke Digital Couture">Bespoke Digital Couture / 3D Outfit</option>
+                <option value="Virtual Fitting Access">Virtual Fitting & AR Passes</option>
+                <option value="Physical Collection Inquiry">Physical Garment / Runway Pieces</option>
+                <option value="Press & Collaboration">Press, Media & Brand Collaboration</option>
+                <option value="General Collector">General VIP Collector Updates</option>
+            </select>
 
+            <!-- Instagram Handle / Phone (Optional) -->
+            <input type="text" name="social_handle" placeholder="Instagram / TikTok Handle (Optional)" style="width: 100%; margin-bottom: 12px;">
+
+            <!-- Additional Notes / Custom Request -->
+            <textarea name="message" rows="3" placeholder="Tell us more about what you're looking for..." style="width: 100%; margin-bottom: 20px; padding: 14px 18px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border-color); color: #fff; border-radius: 2px; outline: none; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-gold" style="width: 100%;">Submit VIP Request</button>
+        </form>
     </section>
-
     <footer>
         <p>© 2026 KORU Haute Couture. All Rights Reserved.</p>
         <p style="margin-top: 5px;">Designed for Paris • Lagos • London • New York</p>
