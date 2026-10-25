@@ -23,6 +23,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -43,11 +44,12 @@
             text-decoration: none;
         }
 
+        /* Sticky Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 22px 5%;
+            padding: 18px 5%;
             background: rgba(7, 18, 12, 0.95);
             position: sticky;
             top: 0;
@@ -57,42 +59,34 @@
         }
 
         .brand-logo {
-            font-size: 1.9rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--accent-gold);
-            cursor: pointer;
             text-shadow: 0 2px 12px rgba(229, 193, 88, 0.25);
         }
 
-        nav {
+        .nav-links {
             display: flex;
-            gap: 12px;
+            gap: 20px;
+            align-items: center;
         }
 
-        .nav-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+        .nav-links a {
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
+            color: var(--text-muted);
+            transition: color 0.3s;
         }
 
-        .nav-btn:hover, .nav-btn.active {
+        .nav-links a:hover {
             color: var(--accent-gold);
-            background: rgba(229, 193, 88, 0.12);
-            border-bottom: 2px solid var(--accent-gold);
         }
 
         .btn-gold {
             background: linear-gradient(135deg, #e5c158 0%, #be9729 100%);
             color: #050d09;
-            padding: 12px 28px;
+            padding: 10px 22px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -101,6 +95,7 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             display: inline-block;
+            font-size: 0.8rem;
         }
 
         .btn-gold:hover {
@@ -108,29 +103,19 @@
             box-shadow: 0 8px 25px rgba(229, 193, 88, 0.45);
         }
 
-        /* View Panels */
-        .view-panel {
-            display: none;
-            padding: 70px 5%;
-            min-height: 80vh;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .view-panel.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Sections */
+        section {
+            padding: 80px 5%;
+            border-bottom: 1px solid var(--border-color);
         }
 
         /* Hero Section */
-        .hero-grid {
+        .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 50px;
+            min-height: 85vh;
         }
 
         .hero-text {
@@ -159,7 +144,7 @@
 
         .hero-text p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 35px;
             max-width: 550px;
         }
@@ -220,14 +205,14 @@
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-top: 10px;
         }
 
         /* Capsule / Lookbook Grid */
         .capsule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -277,7 +262,7 @@
             font-weight: 600;
         }
 
-        /* Manifesto Panel */
+        /* Manifesto Section */
         .manifesto-container {
             max-width: 800px;
             margin: 0 auto;
@@ -294,7 +279,7 @@
             font-size: 1.05rem;
         }
 
-        /* VIP Form Panel */
+        /* VIP Form Section */
         .vip-container {
             max-width: 600px;
             margin: 0 auto;
@@ -360,7 +345,7 @@
 
         .modal-content img {
             width: 100%;
-            max-height: 340px;
+            max-height: 320px;
             object-fit: cover;
             border-radius: 6px;
             margin-bottom: 20px;
@@ -379,7 +364,6 @@
 
         footer {
             padding: 40px 5%;
-            border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -387,7 +371,7 @@
         }
 
         @media (max-width: 768px) {
-            nav {
+            .nav-links {
                 display: none;
             }
         }
@@ -396,53 +380,51 @@
 <body>
 
     <header>
-        <div class="brand-logo" onclick="switchView('hero')">KORU</div>
-        <nav>
-            <button class="nav-btn active" onclick="switchView('hero')">Runway 2026</button>
-            <button class="nav-btn" onclick="switchView('atelier')">360° Lookbook</button>
-            <button class="nav-btn" onclick="switchView('manifesto')">Brand Story</button>
-            <button class="nav-btn" onclick="switchView('vip')">VIP Access</button>
-        </nav>
-        <button class="btn-gold" onclick="switchView('vip')">Join VIP</button>
+        <div class="brand-logo">KORU</div>
+        <div class="nav-links">
+            <a href="#hero">Runway</a>
+            <a href="#atelier">Lookbook</a>
+            <a href="#manifesto">Manifesto</a>
+            <a href="#vip">VIP Access</a>
+        </div>
+        <a href="#vip" class="btn-gold">Join VIP</a>
     </header>
 
-    <!-- VIEW 1: HERO / RUNWAY -->
-    <section id="hero" class="view-panel active">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <span class="hero-tag">Digital Avant-Garde Couture 2026</span>
-                <h1>NATURE MEETS<br><span>HIGH COUTURE</span></h1>
-                <p>A revolutionary fusion of Afrofuturism, organic fabric architecture, and high-fashion digital craftsmanship. Engineered for the runway of tomorrow.</p>
-                
-                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;">
-                    <button class="btn-gold" onclick="switchView('atelier')">Explore 360° Lookbook</button>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div>360°</div>
-                        <div>Virtual Fitting</div>
-                    </div>
-                    <div class="stat-item">
-                        <div>100%</div>
-                        <div>Zero-Waste Digital</div>
-                    </div>
-                    <div class="stat-item">
-                        <div>Haute</div>
-                        <div>Bespoke Design</div>
-                    </div>
-                </div>
+    <!-- SECTION 1: HERO / RUNWAY -->
+    <section id="hero" class="hero">
+        <div class="hero-text">
+            <span class="hero-tag">Digital Avant-Garde Couture 2026</span>
+            <h1>NATURE MEETS<br><span>HIGH COUTURE</span></h1>
+            <p>A revolutionary fusion of Afrofuturism, organic fabric architecture, and high-fashion digital craftsmanship. Engineered for the runway of tomorrow.</p>
+            
+            <div style="margin-bottom: 30px;">
+                <a href="#atelier" class="btn-gold">Explore 360° Lookbook</a>
             </div>
 
-            <div class="hero-img-container">
-                <img src="Front%20view.jpg" alt="KORU High Couture Front View" onclick="openModal('The Emerald Spiral', 'Front%20view.jpg', 'Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green. Composed of organic fern motifs and a circular structured KORU shield skirt element.')">
-                <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; display: block;">Tap image to inspect 3D specifications</span>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div>360°</div>
+                    <div>Virtual Fitting</div>
+                </div>
+                <div class="stat-item">
+                    <div>100%</div>
+                    <div>Zero-Waste Digital</div>
+                </div>
+                <div class="stat-item">
+                    <div>Haute</div>
+                    <div>Bespoke Design</div>
+                </div>
             </div>
+        </div>
+
+        <div class="hero-img-container">
+            <img src="Front%20view.jpg" alt="KORU High Couture Front View" onclick="openModal('The Emerald Spiral', 'Front%20view.jpg', 'Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green. Composed of organic fern motifs and a circular structured KORU shield skirt element.')">
+            <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; display: block;">Tap image to inspect 3D specifications</span>
         </div>
     </section>
 
-    <!-- VIEW 2: 360 ATELIER LOOKBOOK (Includes street.jpg, suit.jpg, bag.jpg, men.jpg & core assets) -->
-    <section id="atelier" class="view-panel">
+    <!-- SECTION 2: LOOKBOOK SHOWROOM (All 9 Images) -->
+    <section id="atelier">
         <div class="section-title">
             <span>Interactive Showroom</span>
             <h2>CAPSULE COLLECTIONS</h2>
@@ -495,7 +477,122 @@
                 </div>
             </div>
 
-            <!-- NEW LOOKBOOK ADDITIONS -->
             <div class="capsule-card" onclick="openModal('Urban Avant-Garde Streetwear', 'street.jpg', 'Urban-engineered statement piece blending high-fashion tailoring with gritty street aesthetics and signature botanical embroidery.')">
                 <img src="street.jpg" alt="Urban Street Look">
                 <div class="capsule-info">
+                    <h3>06 / Urban Streetwear</h3>
+                    <p>High-end urban statement piece blending tailored luxury with rugged street aesthetics.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('The Executive Suit Architecture', 'suit.jpg', 'Immaculately structured luxury suit pairing bespoke emerald patterns with modern geometric lines and satin lapels.')">
+                <img src="suit.jpg" alt="Executive Suit">
+                <div class="capsule-info">
+                    <h3>07 / Executive Suit</h3>
+                    <p>Immaculately structured luxury suit pairing bespoke emerald patterns with modern lines.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('KORU Signature Accessory & Bag', 'bag.jpg', 'Hand-crafted leather and textile accessory featuring embossed KORU gold insignia and organic spiral hardware.')">
+                <img src="bag.jpg" alt="Signature Bag">
+                <div class="capsule-info">
+                    <h3>08 / Signature Accessory</h3>
+                    <p>Hand-crafted leather and textile accessory with embossed gold insignia.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Menswear Avant-Garde Tailoring', 'men.jpg', 'Bold menswear silhouette merging traditional African royal proportions with futuristic structural layering.')">
+                <img src="men.jpg" alt="Menswear Collection">
+                <div class="capsule-info">
+                    <h3>09 / Menswear Vanguard</h3>
+                    <p>Bold menswear silhouette merging traditional royal proportions with futuristic layering.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: MANIFESTO -->
+    <section id="manifesto">
+        <div class="section-title">
+            <span>The Manifesto</span>
+            <h2>REDEFINING LUXURY THROUGH THE DIGITAL SPIRAL</h2>
+        </div>
+
+        <div class="manifesto-container">
+            <p>
+                Rooted in the Maori symbol of new life, growth, and harmony, <strong>KORU</strong> blends organic natural forms with high-end digital couture. We believe the future of fashion lies at the intersection of raw African heritage and boundless digital architecture.
+            </p>
+            <p>
+                Every piece in our collection is digitally sculpted prior to creation—eliminating material waste while allowing complex, impossible geometric silhouettes to materialize seamlessly onto both physical runways and virtual worlds.
+            </p>
+            <p style="color: var(--accent-gold); font-family: 'Cinzel', serif; margin-top: 30px;">
+                — Designed for Paris • Lagos • London • New York
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 4: VIP ACCESS FORM -->
+    <section id="vip">
+        <div class="section-title">
+            <span>Exclusive Invitations</span>
+            <h2>JOIN THE RUNWAY VIP</h2>
+        </div>
+
+        <div class="vip-container">
+            <p style="color: var(--text-muted); text-align: center; margin-bottom: 20px;">
+                Receive private invitations to virtual fashion week showcases, early access to 1-of-1 digital couture drops, and bespoke fittings.
+            </p>
+            
+            <form class="vip-form" action="https://formspree.io/f/xyeezrbo" method="POST">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <select name="interest" required>
+                    <option value="" disabled selected>What are you interested in?</option>
+                    <option value="Bespoke Digital Couture">Bespoke Digital Couture / 3D Outfit</option>
+                    <option value="Virtual Fitting Access">Virtual Fitting & AR Passes</option>
+                    <option value="Physical Collection Inquiry">Physical Garment / Runway Pieces</option>
+                    <option value="Press & Collaboration">Press, Media & Brand Collaboration</option>
+                    <option value="General Collector">General VIP Collector Updates</option>
+                </select>
+                <input type="text" name="social_handle" placeholder="Instagram / TikTok Handle (Optional)">
+                <textarea name="message" rows="3" placeholder="Tell us more about what you're looking for..."></textarea>
+                <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">Submit VIP Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MODAL POPUP -->
+    <div id="lookModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle" style="color: var(--accent-gold); margin-bottom: 15px; font-family: 'Cinzel', serif;"></h3>
+            <img id="modalImg" src="" alt="Look Detail">
+            <p id="modalDesc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;"></p>
+            <a href="#vip" class="btn-gold" onclick="closeModal()">Request This Look</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 KORU Haute Couture. All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Designed for Paris • Lagos • London • New York</p>
+    </footer>
+
+    <script>
+        function openModal(title, imgSrc, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('lookModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('lookModal').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
