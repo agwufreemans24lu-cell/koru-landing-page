@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a1711;
-            --bg-card: #12281d;
-            --bg-panel: #183325;
+            --bg-dark: #07120c;
+            --bg-card: #0e2217;
+            --bg-panel: #132e20;
             --accent-gold: #e5c158;
             --accent-gold-light: #faeab9;
             --text-light: #f4f8f5;
-            --text-muted: #a3b8ad;
-            --border-color: rgba(229, 193, 88, 0.35);
+            --text-muted: #9fb3a8;
+            --border-color: rgba(229, 193, 88, 0.3);
         }
 
         * {
@@ -48,7 +48,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 22px 5%;
-            background: rgba(10, 23, 17, 0.95);
+            background: rgba(7, 18, 12, 0.95);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -61,7 +61,7 @@
             font-weight: 900;
             color: var(--accent-gold);
             cursor: pointer;
-            text-shadow: 0 2px 10px rgba(229, 193, 88, 0.2);
+            text-shadow: 0 2px 12px rgba(229, 193, 88, 0.25);
         }
 
         nav {
@@ -90,7 +90,7 @@
         }
 
         .btn-gold {
-            background: linear-gradient(135deg, #e5c158 0%, #c29b2b 100%);
+            background: linear-gradient(135deg, #e5c158 0%, #be9729 100%);
             color: #050d09;
             padding: 12px 28px;
             font-weight: 700;
@@ -105,7 +105,7 @@
 
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(229, 193, 88, 0.4);
+            box-shadow: 0 8px 25px rgba(229, 193, 88, 0.45);
         }
 
         /* View Panels */
@@ -175,7 +175,7 @@
             max-width: 480px;
             border-radius: 10px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -243,7 +243,7 @@
         .capsule-card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-gold);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
         }
 
         .capsule-card img {
@@ -285,7 +285,7 @@
             border: 1px solid var(--border-color);
             padding: 50px;
             border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
         }
 
         .manifesto-container p {
@@ -302,7 +302,7 @@
             border: 1px solid var(--border-color);
             padding: 50px;
             border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
         }
 
         .vip-form {
@@ -315,7 +315,7 @@
         .vip-form input, .vip-form select, .vip-form textarea {
             width: 100%;
             padding: 14px 18px;
-            background: rgba(5, 13, 9, 0.7);
+            background: rgba(7, 18, 12, 0.75);
             border: 1px solid var(--border-color);
             color: #fff;
             border-radius: 4px;
@@ -334,7 +334,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 13, 9, 0.9);
+            background: rgba(7, 18, 12, 0.92);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -355,7 +355,7 @@
             border-radius: 10px;
             position: relative;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.75);
         }
 
         .modal-content img {
@@ -441,7 +441,7 @@
         </div>
     </section>
 
-    <!-- VIEW 2: 360 ATELIER LOOKBOOK (Includes jacket.jpg & fullpic.jpg) -->
+    <!-- VIEW 2: 360 ATELIER LOOKBOOK (Includes street.jpg, suit.jpg, bag.jpg, men.jpg & core assets) -->
     <section id="atelier" class="view-panel">
         <div class="section-title">
             <span>Interactive Showroom</span>
@@ -494,101 +494,8 @@
                     <span class="explore-tag">Tap to Inspect →</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- VIEW 3: BRAND STORY / MANIFESTO -->
-    <section id="manifesto" class="view-panel">
-        <div class="section-title">
-            <span>The Manifesto</span>
-            <h2>REDEFINING LUXURY THROUGH THE DIGITAL SPIRAL</h2>
-        </div>
-
-        <div class="manifesto-container">
-            <p>
-                Rooted in the Maori symbol of new life, growth, and harmony, <strong>KORU</strong> blends organic natural forms with high-end digital couture. We believe the future of fashion lies at the intersection of raw African heritage and boundless digital architecture.
-            </p>
-            <p>
-                Every piece in our collection is digitally sculpted prior to creation—eliminating material waste while allowing complex, impossible geometric silhouettes to materialize seamlessly onto both physical runways and virtual worlds.
-            </p>
-            <p style="color: var(--accent-gold); font-family: 'Cinzel', serif; margin-top: 30px;">
-                — Designed for Paris • Lagos • London • New York
-            </p>
-        </div>
-    </section>
-
-    <!-- VIEW 4: VIP ACCESS FORM -->
-    <section id="vip" class="view-panel">
-        <div class="section-title">
-            <span>Exclusive Invitations</span>
-            <h2>JOIN THE RUNWAY VIP</h2>
-        </div>
-
-        <div class="vip-container">
-            <p style="color: var(--text-muted); text-align: center; margin-bottom: 20px;">
-                Receive private invitations to virtual fashion week showcases, early access to 1-of-1 digital couture drops, and bespoke fittings.
-            </p>
-            
-            <form class="vip-form" action="https://formspree.io/f/xyeezrbo" method="POST">
-                <input type="text" name="name" placeholder="Your Full Name" required>
-                <input type="email" name="email" placeholder="Your Email Address" required>
-                <select name="interest" required>
-                    <option value="" disabled selected>What are you interested in?</option>
-                    <option value="Bespoke Digital Couture">Bespoke Digital Couture / 3D Outfit</option>
-                    <option value="Virtual Fitting Access">Virtual Fitting & AR Passes</option>
-                    <option value="Physical Collection Inquiry">Physical Garment / Runway Pieces</option>
-                    <option value="Press & Collaboration">Press, Media & Brand Collaboration</option>
-                    <option value="General Collector">General VIP Collector Updates</option>
-                </select>
-                <input type="text" name="social_handle" placeholder="Instagram / TikTok Handle (Optional)">
-                <textarea name="message" rows="3" placeholder="Tell us more about what you're looking for..."></textarea>
-                <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">Submit VIP Request</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- INTERACTIVE LOOKBOOK MODAL -->
-    <div id="lookModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
-            <h3 id="modalTitle" style="color: var(--accent-gold); margin-bottom: 15px; font-family: 'Cinzel', serif;"></h3>
-            <img id="modalImg" src="" alt="Look Detail">
-            <p id="modalDesc" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;"></p>
-            <button class="btn-gold" onclick="switchView('vip'); closeModal();">Request This Look</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 KORU Haute Couture. All Rights Reserved.</p>
-        <p style="margin-top: 5px;">Designed for Paris • Lagos • London • New York</p>
-    </footer>
-
-    <script>
-        function switchView(viewId) {
-            document.querySelectorAll('.view-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById(viewId).classList.add('active');
-            
-            // Highlight matching nav button if clicked from navigation
-            event && event.target && event.target.classList.contains('nav-btn') && event.target.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openModal(title, imgSrc, desc) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalImg').src = imgSrc;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('lookModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('lookModal').classList.remove('active');
-        }
-    </script>
-
-</body>
-</html>
+            <!-- NEW LOOKBOOK ADDITIONS -->
+            <div class="capsule-card" onclick="openModal('Urban Avant-Garde Streetwear', 'street.jpg', 'Urban-engineered statement piece blending high-fashion tailoring with gritty street aesthetics and signature botanical embroidery.')">
+                <img src="street.jpg" alt="Urban Street Look">
+                <div class="capsule-info">
