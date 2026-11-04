@@ -1,372 +1,679 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QVAXZION | Digital Avant-Garde Haute Couture</title>
-    <!-- Google Fonts for Classic Luxury Serif & Clean Sans -->
+    <title>KORU | Digital Avant-Garde Couture 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        luxury: {
-                            dark: '#08110D',      /* Deep forest luxury void */
-                            surface: '#111F17',   /* Deep muted forest panel */
-                            card: '#182C22',      /* Elevated card container */
-                            gold: '#D4AF37',      /* Classic brushed gold */
-                            goldLight: '#F3E5AB', /* Champagne gold accent */
-                            goldMuted: '#998126', /* Deep antiqued gold */
-                            border: '#274433'     /* Fine structural border */
-                        }
-                    },
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-dark: #07120c;
+            --bg-card: #0e2217;
+            --bg-panel: #132e20;
+            --accent-gold: #e5c158;
+            --accent-gold-light: #faeab9;
+            --text-light: #f4f8f5;
+            --text-muted: #9fb3a8;
+            --border-color: rgba(229, 193, 88, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #08110D;
-            color: #F3E5AB;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        .font-cinzel { font-family: 'Cinzel', serif; }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #998126 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        h1, h2, h3, h4, .brand-logo {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
         }
-        .gold-border {
-            border-color: #274433;
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        .gold-border:focus {
-            border-color: #D4AF37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+
+        /* Luxury Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background: rgba(7, 18, 12, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(14px);
         }
-        /* Custom subtle scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #08110D; }
-        ::-webkit-scrollbar-thumb { background: #274433; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        .brand-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            cursor: pointer;
+            text-shadow: 0 2px 12px rgba(229, 193, 88, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 4px;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--accent-gold);
+            background: rgba(229, 193, 88, 0.12);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #e5c158 0%, #be9729 100%);
+            color: #050d09;
+            padding: 10px 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229, 193, 88, 0.45);
+        }
+
+        /* Mobile Drawer Menu */
+        .mobile-nav-drawer {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 5%;
+            gap: 10px;
+        }
+
+        .mobile-nav-drawer.active {
+            display: flex;
+        }
+
+        /* Multi-Page Views Container */
+        .page-view {
+            display: none;
+            padding: 70px 5%;
+            min-height: 80vh;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Page 1: Runway Home */
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1 1 500px;
+        }
+
+        .hero-tag {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+            max-width: 550px;
+        }
+
+        .hero-img-container {
+            flex: 1 1 400px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .hero-img-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        .stat-item div:first-child {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .stat-item div:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .section-title h2 {
+            font-size: 2.3rem;
+            margin-top: 10px;
+        }
+
+        /* Page 2: Lookbook Gallery (All 9 Images) */
+        .capsule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .capsule-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .capsule-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+        }
+
+        .capsule-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .capsule-info {
+            padding: 20px;
+        }
+
+        .capsule-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .capsule-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .explore-tag {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Page 3: Manifesto / Brand Story */
+        .manifesto-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .manifesto-container p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* Page 4: VIP Form Access */
+        .vip-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .vip-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .vip-form input, .vip-form select, .vip-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(7, 18, 12, 0.75);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .vip-form input:focus, .vip-form select:focus, .vip-form textarea:focus {
+            border-color: var(--accent-gold);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(7, 18, 12, 0.92);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-panel);
+            border: 1px solid var(--accent-gold);
+            max-width: 600px;
+            width: 100%;
+            padding: 35px;
+            border-radius: 10px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.75);
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        footer {
+            padding: 40px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
     </style>
 </head>
-<body class="bg-luxury-dark text-luxury-goldLight antialiased selection:bg-luxury-gold selection:text-luxury-dark">
+<body>
 
-    <!-- Top Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-luxury-dark/90 backdrop-blur-md border-b border-luxury-border">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="font-cinzel text-2xl md:text-3xl font-bold tracking-[0.2em] gold-gradient-text">
-                QVAXZION
-            </a>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-10 text-xs font-semibold tracking-[0.25em] uppercase text-luxury-goldLight/80">
-                <a href="#manifesto" class="hover:text-luxury-gold transition-colors">Manifesto</a>
-                <a href="#atelier" class="hover:text-luxury-gold transition-colors">Atelier</a>
-                <a href="#vault" class="hover:text-luxury-gold transition-colors">VIP Vault</a>
-            </nav>
-
-            <!-- Action Trigger -->
-            <a href="#vault" class="px-5 py-2.5 text-xs font-cinzel font-bold tracking-[0.15em] uppercase border border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-luxury-dark transition-all duration-300">
-                Access Portal
-            </a>
+    <header>
+        <div class="brand-logo" onclick="switchPage('runway')">KORU</div>
+        <div class="nav-links">
+            <button class="nav-btn active" id="btn-runway" onclick="switchPage('runway')">Runway</button>
+            <button class="nav-btn" id="btn-lookbook" onclick="switchPage('lookbook')">Lookbook</button>
+            <button class="nav-btn" id="btn-manifesto" onclick="switchPage('manifesto')">Manifesto</button>
+            <button class="nav-btn" id="btn-vip" onclick="switchPage('vip')">VIP Access</button>
         </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">≡ Menu</button>
+        <button class="btn-gold" onclick="switchPage('vip')">Join VIP</button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-        <!-- Background Ambient Glow -->
-        <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-            <div class="w-[600px] h-[600px] bg-luxury-gold/5 rounded-full blur-[120px]"></div>
+    <!-- MOBILE DRAWER -->
+    <div id="mobileDrawer" class="mobile-nav-drawer">
+        <button class="nav-btn" onclick="switchPage('runway'); toggleMobileMenu();">Runway</button>
+        <button class="nav-btn" onclick="switchPage('lookbook'); toggleMobileMenu();">Lookbook</button>
+        <button class="nav-btn" onclick="switchPage('manifesto'); toggleMobileMenu();">Manifesto</button>
+        <button class="nav-btn" onclick="switchPage('vip'); toggleMobileMenu();">VIP Access</button>
+    </div>
+
+    <!-- PAGE 1: RUNWAY HOME -->
+    <div id="page-runway" class="page-view active">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <span class="hero-tag">Digital Avant-Garde Couture 2026</span>
+                <h1>NATURE MEETS<br><span>HIGH COUTURE</span></h1>
+                <p>A revolutionary fusion of Afrofuturism, organic fabric architecture, and high-fashion digital craftsmanship. Engineered for the runway of tomorrow.</p>
+                
+                <div style="margin-bottom: 30px;">
+                    <button class="btn-gold" onclick="switchPage('lookbook')">Explore 360° Lookbook</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div>360°</div>
+                        <div>Virtual Fitting</div>
+                    </div>
+                    <div class="stat-item">
+                        <div>100%</div>
+                        <div>Zero-Waste Digital</div>
+                    </div>
+                    <div class="stat-item">
+                        <div>Haute</div>
+                        <div>Bespoke Design</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-img-container">
+                <img src="Front%20view.jpg" alt="KORU High Couture Front View" onclick="openModal('The Emerald Spiral', 'Front%20view.jpg', 'Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green. Composed of organic fern motifs and a circular structured KORU shield skirt element.')">
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; display: block;">Tap image to inspect 3D specifications</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: LOOKBOOK SHOWROOM (All 9 Images) -->
+    <div id="page-lookbook" class="page-view">
+        <div class="section-title">
+            <span>Interactive Showroom</span>
+            <h2>CAPSULE COLLECTIONS</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">Select any perspective to examine structural architecture and material weave.</p>
         </div>
 
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <p class="text-xs md:text-sm font-cinzel tracking-[0.4em] text-luxury-gold uppercase mb-4">
-                Digital Avant-Garde Haute Couture
+        <div class="capsule-grid">
+            <div class="capsule-card" onclick="openModal('The Emerald Spiral (Front View)', 'Front%20view.jpg', 'Tailored hourglass silhouette featuring high-density raised botanical embroidery in deep forest green with a structured KORU shield skirt element.')">
+                <img src="Front%20view.jpg" alt="Front View">
+                <div class="capsule-info">
+                    <h3>01 / Front View</h3>
+                    <p>Structured blazer with sculpted asymmetrical layered skirt and botanical emblem.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Symmetrical Fern Spine (Back View)', 'Back%20view.jpg', 'Continuous spine embroidery flowing into a tiered earth-fabric trailing train engineered for dramatic movement and balance.')">
+                <img src="Back%20view.jpg" alt="Back View">
+                <div class="capsule-info">
+                    <h3>02 / Back Perspective</h3>
+                    <p>Continuous spine embroidery flowing into a tiered earth-fabric trailing train.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('The Profile Silhouette (Side View)', 'Side%20view.jpg', 'Sculpted boots matching the jacket organic texture, combining Afrofuturistic silhouette architecture and modern luxury.')">
+                <img src="Side%20view.jpg" alt="Side View">
+                <div class="capsule-info">
+                    <h3>03 / Side Profile</h3>
+                    <p>Sculpted boots matching the jacket\'s organic texture, engineered for motion.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Atelier Craftsmanship & Tailoring', 'jacket.jpg', 'Close-up architectural view of the KORU signature wool-blend jacket, featuring leather collar accents, custom embossed KORU hardware, and the circular back spiral crest.')">
+                <img src="jacket.jpg" alt="Jacket Atelier Details">
+                <div class="capsule-info">
+                    <h3>04 / Atelier Craftsmanship</h3>
+                    <p>Close-up hardware, leather collar architecture, and embossed back crest details.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Full Runway Look 2026', 'fullpic.jpg', 'Full-length editorial showcase highlighting the complete silhouette, organic draping, and futuristic proportions of the KORU flagship collection.')">
+                <img src="fullpic.jpg" alt="Full Runway View">
+                <div class="capsule-info">
+                    <h3>05 / Full Runway Showcase</h3>
+                    <p>Full-length editorial showcase highlighting the complete silhouette and organic draping.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Urban Avant-Garde Streetwear', 'street.jpg', 'Urban-engineered statement piece blending high-fashion tailoring with gritty street aesthetics and signature botanical embroidery.')">
+                <img src="street.jpg" alt="Urban Street Look">
+                <div class="capsule-info">
+                    <h3>06 / Urban Streetwear</h3>
+                    <p>High-end urban statement piece blending tailored luxury with rugged street aesthetics.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('The Executive Suit Architecture', 'suit.jpg', 'Immaculately structured luxury suit pairing bespoke emerald patterns with modern geometric lines and satin lapels.')">
+                <img src="suit.jpg" alt="Executive Suit">
+                <div class="capsule-info">
+                    <h3>07 / Executive Suit</h3>
+                    <p>Immaculately structured luxury suit pairing bespoke emerald patterns with modern lines.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('KORU Signature Accessory & Bag', 'bag.jpg', 'Hand-crafted leather and textile accessory featuring embossed KORU gold insignia and organic spiral hardware.')">
+                <img src="bag.jpg" alt="Signature Bag">
+                <div class="capsule-info">
+                    <h3>08 / Signature Accessory</h3>
+                    <p>Hand-crafted leather and textile accessory with embossed gold insignia.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+
+            <div class="capsule-card" onclick="openModal('Menswear Avant-Garde Tailoring', 'men.jpg', 'Bold menswear silhouette merging traditional African royal proportions with futuristic structural layering.')">
+                <img src="men.jpg" alt="Menswear Collection">
+                <div class="capsule-info">
+                    <h3>09 / Menswear Vanguard</h3>
+                    <p>Bold menswear silhouette merging traditional royal proportions with futuristic layering.</p>
+                    <span class="explore-tag">Tap to Inspect →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: MANIFESTO -->
+    <div id="page-manifesto" class="page-view">
+        <div class="section-title">
+            <span>The Manifesto</span>
+            <h2>REDEFINING LUXURY THROUGH THE DIGITAL SPIRAL</h2>
+        </div>
+
+        <div class="manifesto-container">
+            <p>
+                Rooted in the Maori symbol of new life, growth, and harmony, <strong>KORU</strong> blends organic natural forms with high-end digital couture. We believe the future of fashion lies at the intersection of raw African heritage and boundless digital architecture.
             </p>
-            <h1 class="font-cinzel text-5xl md:text-8xl font-black tracking-[0.1em] text-white mb-6">
-                QVAXZION
-            </h1>
-            <p class="font-cinzel text-lg md:text-xl tracking-[0.25em] text-luxury-goldMuted uppercase mb-10">
-                /kwah-ZEE-on/
+            <p>
+                Every piece in our collection is digitally sculpted prior to creation—eliminating material waste while allowing complex, impossible geometric silhouettes to materialize seamlessly onto both physical runways and virtual worlds.
             </p>
-            <p class="max-w-2xl mx-auto text-sm md:text-base text-luxury-goldLight/70 font-light leading-relaxed mb-12">
-                A pristine digital sanctuary operating outside traditional timelines. Zero history. Total autonomy. Pure architectural execution engineered for the modern elite.
+            <p style="color: var(--accent-gold); font-family: 'Cinzel', serif; margin-top: 30px;">
+                — Designed for Paris • Lagos • London • New York
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                <a href="#vault" class="w-full sm:w-auto px-8 py-4 bg-luxury-gold text-luxury-dark font-cinzel font-bold text-xs tracking-[0.2em] uppercase hover:bg-luxury-goldLight transition-all duration-300 shadow-xl">
-                    Enter Secure Portal
-                </a>
-                <a href="#manifesto" class="w-full sm:w-auto px-8 py-4 border border-luxury-border text-luxury-goldLight font-cinzel font-bold text-xs tracking-[0.2em] uppercase hover:border-luxury-gold transition-all duration-300">
-                    Explore Manifesto
-                </a>
-            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Manifesto Section (Concept 1) -->
-    <section id="manifesto" class="py-32 px-6 bg-luxury-surface border-t border-b border-luxury-border">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-20">
-                <p class="text-xs font-cinzel tracking-[0.3em] text-luxury-gold uppercase mb-3">The Architectural Standard</p>
-                <h2 class="font-cinzel text-3xl md:text-5xl font-bold tracking-wider text-white">The Manifesto</h2>
-                <div class="w-16 h-[1px] bg-luxury-gold mx-auto mt-6"></div>
-            </div>
-
-            <!-- 8 Pillars Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Q -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">Q</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Quality</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">Uncompromising material integrity and execution across every physical and digital thread.</p>
-                </div>
-                <!-- V -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">V</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Vision</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">Defining tomorrow's silhouettes before they are recognized by mainstream paradigms.</p>
-                </div>
-                <!-- A -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">A</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Autonomy</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">Existing entirely outside seasonal retail cycles, trends, and mass production limits.</p>
-                </div>
-                <!-- X -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">X</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Variable</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">The absolute mark of individual signature and unmapped creative expression.</p>
-                </div>
-                <!-- Z -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">Z</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Zero</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">A blank, pristine canvas completely untouched by historical baggage or clutter.</p>
-                </div>
-                <!-- I -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">I</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Innovation</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">Sculptural precision rendered through advanced digital mastery and code architecture.</p>
-                </div>
-                <!-- O -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">O</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Originality</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">Zero imitation. Total structural purity and standalone ownership of space.</p>
-                </div>
-                <!-- N -->
-                <div class="p-8 bg-luxury-card border border-luxury-border hover:border-luxury-gold/50 transition-all duration-300 group">
-                    <span class="font-cinzel text-4xl font-bold gold-gradient-text block mb-4">N</span>
-                    <h3 class="font-cinzel text-lg text-white font-semibold tracking-wider mb-2">Nobility</h3>
-                    <p class="text-xs text-luxury-goldLight/60 leading-relaxed font-light">The refined, quiet elegance characteristic of absolute high luxury houses.</p>
-                </div>
-            </div>
+    <!-- PAGE 4: VIP ACCESS FORM -->
+    <div id="page-vip" class="page-view">
+        <div class="section-title">
+            <span>Exclusive Invitations</span>
+            <h2>JOIN THE RUNWAY VIP</h2>
         </div>
-    </section>
 
-    <!-- Atelier Preview Section -->
-    <section id="atelier" class="py-32 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
-                <div>
-                    <p class="text-xs font-cinzel tracking-[0.3em] text-luxury-gold uppercase mb-3">Selected Works</p>
-                    <h2 class="font-cinzel text-3xl md:text-5xl font-bold tracking-wider text-white">The Atelier Series</h2>
-                </div>
-                <p class="text-xs text-luxury-goldLight/50 tracking-widest uppercase mt-4 md:mt-0 font-cinzel">Limited Release — Series 01</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div class="group bg-luxury-surface border border-luxury-border overflow-hidden">
-                    <div class="h-80 bg-luxury-card flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-luxury-dark via-transparent to-transparent opacity-60"></div>
-                        <span class="font-cinzel text-6xl font-black text-luxury-border tracking-tighter group-hover:text-luxury-gold/20 transition-all duration-500">QX-01</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-cinzel text-sm font-bold tracking-widest text-white">Monolith Overcoat</h3>
-                            <span class="text-xs text-luxury-gold font-mono">ENCRYPTED</span>
-                        </div>
-                        <p class="text-xs text-luxury-goldLight/60 font-light">Structured heavy wool silhouette featuring laser-etched hardware.</p>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="group bg-luxury-surface border border-luxury-border overflow-hidden">
-                    <div class="h-80 bg-luxury-card flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-luxury-dark via-transparent to-transparent opacity-60"></div>
-                        <span class="font-cinzel text-6xl font-black text-luxury-border tracking-tighter group-hover:text-luxury-gold/20 transition-all duration-500">QX-02</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-cinzel text-sm font-bold tracking-widest text-white">Vanguard Cipher Vest</h3>
-                            <span class="text-xs text-luxury-gold font-mono">ENCRYPTED</span>
-                        </div>
-                        <p class="text-xs text-luxury-goldLight/60 font-light">Modular asymmetrical tailoring built with water-repellant technical twill.</p>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="group bg-luxury-surface border border-luxury-border overflow-hidden">
-                    <div class="h-80 bg-luxury-card flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-t from-luxury-dark via-transparent to-transparent opacity-60"></div>
-                        <span class="font-cinzel text-6xl font-black text-luxury-border tracking-tighter group-hover:text-luxury-gold/20 transition-all duration-500">QX-03</span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-cinzel text-sm font-bold tracking-widest text-white">Apex Silk Trousers</h3>
-                            <span class="text-xs text-luxury-gold font-mono">ENCRYPTED</span>
-                        </div>
-                        <p class="text-xs text-luxury-goldLight/60 font-light">High-waist architectural pleating designed with raw Japanese silk.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="vip-container">
+            <p style="color: var(--text-muted); text-align: center; margin-bottom: 20px;">
+                Receive private invitations to virtual fashion week showcases, early access to 1-of-1 digital couture drops, and bespoke fittings.
+            </p>
+            
+            <form class="vip-form" action="https://formspree.io/f/xyeezrbo" method="POST">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <select name="interest" required>
+                    <option value="" disabled selected>What are you interested in?</option>
+                    <option value="Bespoke Digital Couture">Bespoke Digital Couture / 3D Outfit</option>
+                    <option value="Virtual Fitting Access">Virtual Fitting & AR Passes</option>
+                    <option value="Physical Collection Inquiry">Physical Garment / Runway Pieces</option>
+                    <option value="Press & Collaboration">Press, Media & Brand Collaboration</option>
+                    <option value="General Collector">General VIP Collector Updates</option>
+                </select>
+                <input type="text" name="social_handle" placeholder="Instagram / TikTok Handle (Optional)">
+                <textarea name="message" rows="3" placeholder="Tell us more about what you're looking for..."></textarea>
+                <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">Submit VIP Request</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- SECURED VIP / PRIVATE VAULT SECTION -->
-    <section id="vault" class="py-32 px-6 bg-luxury-surface border-t border-luxury-border relative">
-        <div class="max-w-xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="inline-block p-3 rounded-full bg-luxury-card border border-luxury-border text-luxury-gold mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                </span>
-                <p class="text-xs font-cinzel tracking-[0.3em] text-luxury-gold uppercase mb-2">Restricted Access</p>
-                <h2 class="font-cinzel text-3xl font-bold tracking-wider text-white">The VIP Vault Portal</h2>
-                <p class="text-xs text-luxury-goldLight/60 mt-3 font-light">Authenticate with your credentials to access private collection releases, drops, and secure digital lookbooks.</p>
-            </div>
-
-            <!-- Authentication Box -->
-            <div id="authContainer" class="p-8 md:p-10 bg-luxury-card border border-luxury-border shadow-2xl relative">
-                <!-- Mode Tabs -->
-                <div class="flex border-b border-luxury-border mb-8">
-                    <button id="loginTabBtn" onclick="switchTab('login')" class="flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-gold border-b-2 border-luxury-gold transition-all">Sign In</button>
-                    <button id="registerTabBtn" onclick="switchTab('register')" class="flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-goldLight/40 hover:text-luxury-gold transition-all">Request Access</button>
-                </div>
-
-                <!-- Form -->
-                <form id="vaultForm" onsubmit="handleAuth(event)" class="space-y-6">
-                    <div id="nameFieldContainer" class="hidden">
-                        <label class="block text-xs font-cinzel tracking-[0.15em] uppercase text-luxury-goldLight/80 mb-2">Full Legal Name / Alias</label>
-                        <input type="text" id="fullName" placeholder="Enter full name" class="w-full bg-luxury-dark border border-luxury-border px-4 py-3.5 text-sm text-white focus:outline-none gold-transition rounded-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-cinzel tracking-[0.15em] uppercase text-luxury-goldLight/80 mb-2">Secure Email Address</label>
-                        <input type="email" id="emailInput" required placeholder="client@qvaxzion.com" class="w-full bg-luxury-dark border border-luxury-border px-4 py-3.5 text-sm text-white focus:outline-none gold-transition rounded-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-cinzel tracking-[0.15em] uppercase text-luxury-goldLight/80 mb-2">Vault Passcode</label>
-                        <input type="password" id="passwordInput" required placeholder="••••••••••••" class="w-full bg-luxury-dark border border-luxury-border px-4 py-3.5 text-sm text-white focus:outline-none gold-transition rounded-none">
-                    </div>
-
-                    <div id="authFeedback" class="text-xs text-center hidden"></div>
-
-                    <button type="submit" id="submitBtn" class="w-full py-4 bg-luxury-gold text-luxury-dark font-cinzel font-bold text-xs tracking-[0.2em] uppercase hover:bg-luxury-goldLight transition-all duration-300 shadow-lg">
-                        Authenticate Identity
-                    </button>
-                </form>
-            </div>
-
-            <!-- Unlocked Vault Content (Initially Hidden) -->
-            <div id="vaultContent" class="hidden p-8 md:p-10 bg-luxury-card border border-luxury-gold/50 shadow-2xl text-center">
-                <div class="inline-flex p-3 rounded-full bg-luxury-gold/10 text-luxury-gold mb-4">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
-                </div>
-                <h3 class="font-cinzel text-xl font-bold tracking-wider text-white mb-2">Access Granted</h3>
-                <p id="welcomeUserText" class="text-xs text-luxury-gold mb-6 font-mono"></p>
-                <div class="p-4 bg-luxury-dark border border-luxury-border text-left mb-6 space-y-2">
-                    <p class="text-xs text-luxury-goldLight/80 font-semibold tracking-wider uppercase font-cinzel">Active Security Clearance:</p>
-                    <p class="text-xs text-luxury-goldLight/60">• Level 1 Encrypted Lookbook Unlocked</p>
-                    <p class="text-xs text-luxury-goldLight/60">• Priority Allocation for Series 01 Drop</p>
-                </div>
-                <button onclick="handleLogout()" class="px-6 py-3 border border-luxury-border text-xs font-cinzel font-bold tracking-widest text-luxury-goldLight hover:border-luxury-gold uppercase transition-all">
-                    Lock Session
-                </button>
-            </div>
+    <!-- MODAL POPUP -->
+    <div id="lookModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle" style="color: var(--accent-gold); margin-bottom: 15px; font-family: 'Cinzel', serif;"></h3>
+            <img id="modalImg" src="" alt="Look Detail">
+            <p id="modalDesc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;"></p>
+            <button class="btn-gold" onclick="switchPage('vip'); closeModal();">Request This Look</button>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="py-16 px-6 bg-luxury-dark border-t border-luxury-border text-center">
-        <div class="max-w-7xl mx-auto flex flex-col items-center justify-center space-y-6">
-            <span class="font-cinzel text-xl font-bold tracking-[0.25em] gold-gradient-text">QVAXZION</span>
-            <p class="text-xs text-luxury-goldLight/40 tracking-widest font-light">© 2026 QVAXZION. All Rights Reserved. Absolute Digital Exclusivity.</p>
-        </div>
+    <footer>
+        <p>© 2026 KORU Haute Couture. All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Designed for Paris • Lagos • London • New York</p>
     </footer>
 
-    <!-- Frontend Interactive Authentication Script -->
     <script>
-        let currentMode = 'login';
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
 
-        function switchTab(mode) {
-            currentMode = mode;
-            const loginBtn = document.getElementById('loginTabBtn');
-            const registerBtn = document.getElementById('registerTabBtn');
-            const nameField = document.getElementById('nameFieldContainer');
-            const submitBtn = document.getElementById('submitBtn');
-            const feedback = document.getElementById('authFeedback');
-
-            feedback.classList.add('hidden');
-
-            if (mode === 'login') {
-                loginBtn.className = "flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-gold border-b-2 border-luxury-gold transition-all";
-                registerBtn.className = "flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-goldLight/40 hover:text-luxury-gold transition-all";
-                nameField.classList.add('hidden');
-                submitBtn.innerText = "Authenticate Identity";
-            } else {
-                registerBtn.className = "flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-gold border-b-2 border-luxury-gold transition-all";
-                loginBtn.className = "flex-1 pb-4 text-xs font-cinzel font-bold tracking-[0.2em] uppercase text-luxury-goldLight/40 hover:text-luxury-gold transition-all";
-                nameField.classList.remove('hidden');
-                submitBtn.innerText = "Register Credentials";
-            }
-        }
-
-        function handleAuth(event) {
-            event.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            const password = document.getElementById('passwordInput').value;
-            const fullName = document.getElementById('fullName').value;
-            const feedback = document.getElementById('authFeedback');
-
-            if (password.length < 6) {
-                feedback.innerText = "Error: Passcode must contain at least 6 characters for vault encryption.";
-                feedback.className = "text-xs text-red-400 text-center";
-                feedback.classList.remove('hidden');
-                return;
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            const activeBtn = document.getElementById('btn-' + pageId);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
             }
 
-            // Simulate secure handshake & session storage
-            feedback.innerText = currentMode === 'login' ? "Establishing secure connection..." : "Encoding secure credentials...";
-            feedback.className = "text-xs text-luxury-gold text-center animate-pulse";
-            feedback.classList.remove('hidden');
-
-            setTimeout(() => {
-                document.getElementById('authContainer').classList.add('hidden');
-                document.getElementById('vaultContent').classList.remove('hidden');
-                document.getElementById('welcomeUserText').innerText = `Authorized Client: ${email}`;
-            }, 1000);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function handleLogout() {
-            document.getElementById('vaultContent').classList.add('hidden');
-            document.getElementById('authContainer').classList.remove('hidden');
-            document.getElementById('vaultForm').reset();
-            document.getElementById('authFeedback').classList.add('hidden');
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('active');
+        }
+
+        function openModal(title, imgSrc, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('lookModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('lookModal').classList.remove('active');
+
         }
     </script>
+
 </body>
 </html>
